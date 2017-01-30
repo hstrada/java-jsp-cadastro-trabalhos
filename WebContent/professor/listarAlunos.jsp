@@ -11,15 +11,18 @@
 				<p class="category">Listagem de Alunos Por Disciplina</p>
 			</div>
 			<div class="content table-responsive table-full-width">
-
+				
 				<table class="table table-hover">
 					<thead>
 						<th>Nome</th>
+						<th>Cadastrar Nota</th>
 					</thead>
 					<tbody>
 						<c:forEach items="${alunos}" var="alunos">
 							<tr>
-								<td>${alunos}</td>
+								<td>${alunos.nome}</td>
+								<td><a href="cadNotas?aluno=${alunos.id}&disciplina=${disciplina}"><i
+										class="pe-7s-magic-wand"></i></a></td>
 							</tr>
 						</c:forEach>
 					</tbody>

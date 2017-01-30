@@ -9,10 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.ct.dao.GenericDao;
-import br.com.ct.entity.Aluno;
-import br.com.ct.entity.Curso;
-import br.com.ct.entity.Perfil;
-import br.com.ct.entity.Usuario;
+import br.com.ct.entity.Nota;
 
 @WebServlet("/professor/cadNotas")
 public class ServletCadastroNotas extends HttpServlet {
@@ -22,47 +19,58 @@ public class ServletCadastroNotas extends HttpServlet {
 		super();
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
-		
-		request.getRequestDispatcher("listarAlunos.jsp").forward(request, response);
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		try {
+			int idDisciplina = Integer.parseInt(request
+					.getParameter("disciplina"));
+			int idAluno = Integer.parseInt(request.getParameter("aluno"));
+
+			GenericDao<Nota> notaDao = new GenericDao<>(Nota.class);
+
+			request.setAttribute("nota",
+					notaDao.buscarNotaDoAluno(idAluno, idDisciplina));
+			request.getRequestDispatcher("cadNotas.jsp").forward(request,
+					response);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		try {
-			String nome = request.getParameter("nome");
-			String ra = request.getParameter("ra");
-			String usuario = request.getParameter("usuario");
-			String senha = request.getParameter("senha");
-			Integer curso = Integer.parseInt(request.getParameter("curso"));
 
-			Curso c = new Curso();
-			c.setId(curso);
+			GenericDao<Nota> notaDao = new GenericDao<>(Nota.class);
 
-			Usuario u = new Usuario();
-			u.setUsuario(usuario);
-			u.setSenha(senha);
-			u.setPerfil(Perfil.ALUNO);
-			
-			// TODO testar se ao inserir um aluno, eu preciso ou não também adicionar um usuario
-			
-			Aluno aluno = new Aluno();
-			aluno.setNome(nome);
-			aluno.setRa(ra);
-			aluno.setCurso(c);
+			Integer idAluno = Integer.parseInt(request.getParameter("idAluno"));
+			Integer idDisciplina = Integer.parseInt(request
+					.getParameter("idDisciplina"));
 
-			GenericDao<Aluno> dao = new GenericDao<>(Aluno.class);
-			GenericDao<Usuario> usuarioDao = new GenericDao<>(Usuario.class);
-			aluno.setUsuario(usuarioDao.buscar(usuarioDao.adicionar(u).getId()));
-			dao.adicionar(aluno);
+			Double atividadePratica = Double.parseDouble(request
+					.getParameter("atpratica"));
+			Double projeto1 = Double.parseDouble(request
+					.getParameter("projeto1"));
+			Double projeto2 = Double.parseDouble(request
+					.getParameter("projeto2"));
 
-			request.setAttribute("mensagem", "O Aluno " + aluno.getNome() + " foi cadastrado com sucesso.");
-			request.getRequestDispatcher("cadAluno.jsp").forward(request, response);
+			Nota nota = notaDao.buscarNotaDoAluno(idAluno, idDisciplina);
+			nota.setAtividadePratica(atividadePratica);
+			nota.setProjeto1(projeto1);
+			nota.setProjeto2(projeto2);
+
+			notaDao.adicionar(nota);
+
+			request.setAttribute("mensagem",
+					"A nota do aluno foi realizada com sucesso.");
+			request.getRequestDispatcher("cadNotas.jsp").forward(request,
+					response);
 		} catch (Exception e) {
 			request.setAttribute("mensagem", "Erro: " + e.getMessage());
-			request.getRequestDispatcher("cadAluno.jsp").forward(request, response);
+			request.getRequestDispatcher("cadNotas.jsp").forward(request,
+					response);
 		}
 	}
 }

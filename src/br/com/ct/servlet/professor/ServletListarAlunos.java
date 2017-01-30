@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.ct.bean.AlunosBean;
-import br.com.ct.entity.Aluno;
 
 @WebServlet("/professor/listarAlunos")
 public class ServletListarAlunos extends HttpServlet {
@@ -27,6 +26,7 @@ public class ServletListarAlunos extends HttpServlet {
 			AlunosBean alunosBean = new AlunosBean();
 
 			request.setAttribute("alunos", alunosBean.getListaAlunosPorIdDisciplina(id));
+			request.setAttribute("disciplina", id);
 
 			request.getRequestDispatcher("listarAlunos.jsp").forward(request, response);
 

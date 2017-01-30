@@ -50,7 +50,8 @@ public class GenericDao<T> implements Dao<T> {
 	public Usuario buscarUsuario(String usuario, String senha) {
 		em = JpaUtil.getEntityManager();
 		em.getTransaction().begin();
-		Query query = em.createQuery("select u from Usuario u where usuario = :usuario and senha = :senha");
+		Query query = em
+				.createQuery("select u from Usuario u where usuario = :usuario and senha = :senha");
 		query.setParameter("usuario", usuario);
 		query.setParameter("senha", senha);
 		return (Usuario) query.getSingleResult();
@@ -59,7 +60,8 @@ public class GenericDao<T> implements Dao<T> {
 	public Professor buscarProfessorPorIdUsuario(int idUsuario) {
 		em = JpaUtil.getEntityManager();
 		em.getTransaction().begin();
-		Query query = em.createQuery("select p from Professor p where p.usuario.id = :idUsuario");
+		Query query = em
+				.createQuery("select p from Professor p where p.usuario.id = :idUsuario");
 		query.setParameter("idUsuario", idUsuario);
 		return (Professor) query.getSingleResult();
 	}
@@ -67,7 +69,8 @@ public class GenericDao<T> implements Dao<T> {
 	public Aluno buscarAlunoPorIdUsuario(int idUsuario) {
 		em = JpaUtil.getEntityManager();
 		em.getTransaction().begin();
-		Query query = em.createQuery("select a from Aluno a where a.usuario.id = :idUsuario");
+		Query query = em
+				.createQuery("select a from Aluno a where a.usuario.id = :idUsuario");
 		query.setParameter("idUsuario", idUsuario);
 		return (Aluno) query.getSingleResult();
 	}
@@ -77,16 +80,9 @@ public class GenericDao<T> implements Dao<T> {
 		em = JpaUtil.getEntityManager();
 		em.getTransaction().begin();
 
-		Query query = em.createQuery("select d.id from Disciplina d join d.cursos c where d.id = :idDisciplina");
+		Query query = em
+				.createQuery("select n.aluno from Nota n where n.disciplina.id = :idDisciplina ");
 
-		// StringBuilder sql = new StringBuilder();
-		// sql.append("SELECT A FROM ALUNO A").append("JOIN CURSO C ON A.IDCURSO
-		// = C.ID")
-		// .append("JOIN CURSO_DISCIPLINA CD ON C.ID = CD.CURSO_ID")
-		// .append("JOIN DISCIPLINA D ON CD.DISCIPLINA_ID = D.ID").append("WHERE
-		// D.ID =:idDisciplina");
-		//
-		// Query query = em.createNativeQuery(sql.toString());
 		query.setParameter("idDisciplina", idDisciplina);
 		return query.getResultList();
 	}
@@ -96,21 +92,21 @@ public class GenericDao<T> implements Dao<T> {
 		em = JpaUtil.getEntityManager();
 		em.getTransaction().begin();
 
-		Query query = em.createQuery(
-				"select d.id as id, d.nome as nome from Disciplina d join d.professores p where p.id = :idProfessor");
+		Query query = em
+				.createQuery("select d.id as id, d.nome as nome from Disciplina d join d.professores p where p.id = :idProfessor");
 		query.setParameter("idProfessor", idProfessor);
 
-		// StringBuilder sql = new StringBuilder();
-		// sql.append("SELECT D.nome FROM Disciplina D")
-		// .append(" inner join PROFESSOR_DISCIPLINA PD on (PD.DISCIPLINA_ID =
-		// D.id)")
-		// .append(" inner join Professor P on (P.id =
-		// PD.PROFESSOR_ID)").append(" where P.id = :idProfessor");
-		//
-		// Query query = em.createNativeQuery(sql.toString());
-
-		// query.setParameter("idProfessor", idProfessor);
 		return query.getResultList();
+	}
+
+	public Nota buscarNotaDoAluno(int idAluno, int idDisciplina) {
+		em = JpaUtil.getEntityManager();
+		em.getTransaction().begin();
+		Query query = em
+				.createQuery("select n from Nota n where n.aluno.id = :idAluno and n.disciplina.id = :idDisciplina");
+		query.setParameter("idAluno", idAluno);
+		query.setParameter("idDisciplina", idDisciplina);
+		return (Nota) query.getSingleResult();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -118,7 +114,8 @@ public class GenericDao<T> implements Dao<T> {
 		em = JpaUtil.getEntityManager();
 		em.getTransaction().begin();
 
-		Query query = em.createQuery("select n.atividadePratica, n.projeto1, n.projeto2 from Nota n where n.aluno.id = :idAluno");
+		Query query = em
+				.createQuery("select n.atividadePratica, n.projeto1, n.projeto2 from Nota n where n.aluno.id = :idAluno");
 		query.setParameter("idAluno", idAluno);
 
 		return query.getResultList();

@@ -10,10 +10,42 @@
 				<form action="cadNotas" method="post">
 
 					<div class="row">
-						<div class="col-md-12">
+						<div class="col-md-6">
 							<div class="form-group">
-								<label>Nome</label> <input type="text" class="form-control"
-									placeholder="Nome da Escola" name="nome">
+								<label>ID do Aluno</label> <input type="text"
+									class="form-control" value="${nota.aluno.id}" name="idAluno"
+									readonly="readonly">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>ID da Disciplina</label> <input type="text"
+									class="form-control" value="${nota.disciplina.id}"
+									name="idDisciplina" readonly="readonly">
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-4">
+							<div class="form-group">
+								<label>Atividade Prática</label> <input type="text"
+									class="form-control" placeholder="Atividade Prática"
+									value="${nota.atividadePratica}" name="atpratica">
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label>Projeto 1</label> <input type="text" class="form-control"
+									placeholder="Nota do Projeto 1" value="${nota.projeto1}"
+									name="projeto1">
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label>Projeto 2</label> <input type="text" class="form-control"
+									placeholder="Nota do Projeto 1" value="${nota.projeto2}"
+									name="projeto2">
 							</div>
 						</div>
 					</div>

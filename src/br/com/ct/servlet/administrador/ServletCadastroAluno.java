@@ -44,10 +44,7 @@ public class ServletCadastroAluno extends HttpServlet {
 			String usuario = request.getParameter("usuario");
 			String senha = request.getParameter("senha");
 			Integer idCurso = Integer.parseInt(request.getParameter("curso"));
-
-			// Curso c = new Curso();
-			// c.setId(curso);
-
+		
 			Curso curso = cursoDao.buscar(idCurso);
 
 			Usuario u = new Usuario();
