@@ -32,8 +32,9 @@ public class ServletListarNotas extends HttpServlet {
 		Aluno a = alunoDao.buscarAlunoPorIdUsuario(u.getId());
 
 		AlunosBean alunosBean = new AlunosBean();
+		
 		request.setAttribute("notas", alunosBean.getListaNotasPorAluno(a.getId()));
-
+		
 		request.getRequestDispatcher("notas.jsp").forward(request, response);
 	}
 
