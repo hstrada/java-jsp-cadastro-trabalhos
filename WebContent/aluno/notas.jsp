@@ -16,6 +16,8 @@
 						<th>Atividade Prática</th>
 						<th>Projeto 1</th>
 						<th>Projeto 2</th>
+						<th>Média</th>
+						<th>Status</th>
 					</thead>
 					<tbody>
 						<c:forEach items="${notas}" var="notas">
@@ -23,6 +25,8 @@
 								<td>${notas.atividadePratica}</td>
 								<td>${notas.projeto1}</td>
 								<td>${notas.projeto2}</td>
+								<td>${notas.media}</td>
+								<td>${notas.aprovadoDescricao}</td>
 							</tr>
 						</c:forEach>
 					</tbody>

@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "nota")
@@ -38,7 +39,13 @@ public class Nota implements Serializable {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDDISCIPLINA", referencedColumnName = "id")
 	private Disciplina disciplina;
-	
+
+	@Transient
+	private Double media;
+
+	@Transient
+	private boolean aprovado;
+
 	public Integer getId() {
 		return id;
 	}
@@ -87,4 +94,29 @@ public class Nota implements Serializable {
 		this.disciplina = disciplina;
 	}
 
+	public Double getMedia() {
+		double p1 = projeto1 * 0.3;
+		double p2 = projeto2 * 0.4;
+		double ap = atividadePratica * 0.3;
+		double media = p1 + p2 + ap;
+
+		if (media >= 7) {
+			boolean aprovado = true;
+		} else {
+			boolean aprovado = false;
+		}
+
+		return media;
+	}
+
+	public boolean isAprovado() {
+		return aprovado;
+	}
+
+	public String getAprovadoDescricao() {
+		if (aprovado = true)
+			return "Aprovado";
+		else
+			return "Reprovado";
+	}
 }
