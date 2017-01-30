@@ -38,7 +38,7 @@ public class Nota implements Serializable {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDDISCIPLINA", referencedColumnName = "id")
 	private Disciplina disciplina;
-
+	
 	public Integer getId() {
 		return id;
 	}
