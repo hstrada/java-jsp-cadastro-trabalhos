@@ -26,15 +26,6 @@ public class Disciplina implements Serializable {
 	@Column(name = "NOME")
 	private String nome;
 
-	// @Column(name = "CARGAHORARIA")
-	// private int cargaHoraria;
-
-	// TODO arrumar relacionamento
-	// @ManyToMany(fetch = FetchType.LAZY)
-	// @JoinColumns({ @JoinColumn(name = "IDCURSO", referencedColumnName = "id")
-	// })
-	// private Curso curso;
-	//
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "disciplinas")
 	private Set<Curso> cursos = new HashSet<>();
 

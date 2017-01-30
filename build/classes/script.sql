@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `trabalhosdb` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `trabalhosdb`;
 -- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
 -- Host: localhost    Database: trabalhosdb
@@ -18,163 +16,163 @@ USE `trabalhosdb`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `administradores`
+-- Table structure for table `aluno`
 --
 
-DROP TABLE IF EXISTS `administradores`;
+DROP TABLE IF EXISTS `aluno`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `administradores` (
+CREATE TABLE `aluno` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `EMAIL` varchar(255) DEFAULT NULL,
-  `USUARIO` varchar(255) DEFAULT NULL,
-  `SENHA` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`ID`)
+  `NOME` varchar(255) DEFAULT NULL,
+  `RA` varchar(255) DEFAULT NULL,
+  `IDCURSO` int(11) DEFAULT NULL,
+  `IDUSUARIO` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `FK_mwm61qmcd8cleka2o5g37edyt` (`IDCURSO`),
+  KEY `FK_mt23y49xufqx2111xbbje6fn9` (`IDUSUARIO`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `curso`
+--
+
+DROP TABLE IF EXISTS `curso`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `curso` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `NOME` varchar(255) DEFAULT NULL,
+  `SIGLA` varchar(255) DEFAULT NULL,
+  `IDESCOLA` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `FK_kf6pc9o384bheh138c33jboj6` (`IDESCOLA`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+--
+-- Table structure for table `curso_disciplina`
+--
+
+DROP TABLE IF EXISTS `curso_disciplina`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `curso_disciplina` (
+  `CURSO_ID` int(11) NOT NULL,
+  `DISCIPLINA_ID` int(11) NOT NULL,
+  PRIMARY KEY (`CURSO_ID`,`DISCIPLINA_ID`),
+  KEY `FK_5a91rac3v601cyn02yq7uhovx` (`DISCIPLINA_ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `administradores`
+-- Table structure for table `disciplina`
 --
 
-LOCK TABLES `administradores` WRITE;
-/*!40000 ALTER TABLE `administradores` DISABLE KEYS */;
-/*!40000 ALTER TABLE `administradores` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `alunos`
---
-
-DROP TABLE IF EXISTS `alunos`;
+DROP TABLE IF EXISTS `disciplina`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `alunos` (
+CREATE TABLE `disciplina` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `EMAIL` varchar(255) DEFAULT NULL,
-  `USUARIO` varchar(255) DEFAULT NULL,
-  `SENHA` varchar(255) DEFAULT NULL,
-  `ATIVIDADEPRATICA` double DEFAULT NULL,
+  `NOME` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+
+--
+-- Table structure for table `escola`
+--
+
+DROP TABLE IF EXISTS `escola`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `escola` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `NOME` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `nota`
+--
+
+DROP TABLE IF EXISTS `nota`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `nota` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `ATPRATICA` double DEFAULT NULL,
   `PROJETO1` double DEFAULT NULL,
   `PROJETO2` double DEFAULT NULL,
-  `IDCURSO` int(11) DEFAULT NULL,
+  `IDALUNO` int(11) DEFAULT NULL,
+  `IDDISCIPLINA` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID`),
-  KEY `FK_hiscbckk6syy23kulch78vlj1` (`IDCURSO`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  KEY `FK_s3plqgbql1404rjxjkpwq5c46` (`IDALUNO`),
+  KEY `FK_q7u2tufu4pbljk2g1awf9x3sf` (`IDDISCIPLINA`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `alunos`
---
-
-LOCK TABLES `alunos` WRITE;
-/*!40000 ALTER TABLE `alunos` DISABLE KEYS */;
-/*!40000 ALTER TABLE `alunos` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
--- Table structure for table `cursos`
+-- Table structure for table `professor`
 --
 
-DROP TABLE IF EXISTS `cursos`;
+DROP TABLE IF EXISTS `professor`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `cursos` (
+CREATE TABLE `professor` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `DATAINICIO` datetime DEFAULT NULL,
-  `PRECO` double DEFAULT NULL,
-  `REQUISITO` varchar(255) DEFAULT NULL,
+  `NOME` varchar(255) DEFAULT NULL,
   `IDESCOLA` int(11) DEFAULT NULL,
+  `IDUSUARIO` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID`),
-  KEY `FK_tk8keg9vyrit3enmjao6owmlw` (`IDESCOLA`)
+  KEY `FK_418hvi0evklpmqwei2yn655wp` (`IDESCOLA`),
+  KEY `FK_dinhv1dj3ped7wletk15kdwww` (`IDUSUARIO`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+
+--
+-- Table structure for table `professor_disciplina`
+--
+
+DROP TABLE IF EXISTS `professor_disciplina`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `professor_disciplina` (
+  `PROFESSOR_ID` int(11) NOT NULL,
+  `DISCIPLINA_ID` int(11) NOT NULL,
+  PRIMARY KEY (`PROFESSOR_ID`,`DISCIPLINA_ID`),
+  KEY `FK_dceb83kmlmd5d3shusxocw2hu` (`DISCIPLINA_ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `cursos`
+-- Table structure for table `usuario`
 --
 
-LOCK TABLES `cursos` WRITE;
-/*!40000 ALTER TABLE `cursos` DISABLE KEYS */;
-/*!40000 ALTER TABLE `cursos` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `disciplinas`
---
-
-DROP TABLE IF EXISTS `disciplinas`;
+DROP TABLE IF EXISTS `usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `disciplinas` (
+CREATE TABLE `usuario` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `CARGAHORARIA` int(11) DEFAULT NULL,
-  `NOME` varchar(255) DEFAULT NULL,
-  `IDCURSO` int(11) DEFAULT NULL,
-  PRIMARY KEY (`ID`),
-  KEY `FK_9w5cp9marfmi8fi89s2nx7k1k` (`IDCURSO`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `disciplinas`
---
-
-LOCK TABLES `disciplinas` WRITE;
-/*!40000 ALTER TABLE `disciplinas` DISABLE KEYS */;
-/*!40000 ALTER TABLE `disciplinas` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `escolas`
---
-
-DROP TABLE IF EXISTS `escolas`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `escolas` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `NOME` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `escolas`
---
-
-LOCK TABLES `escolas` WRITE;
-/*!40000 ALTER TABLE `escolas` DISABLE KEYS */;
-/*!40000 ALTER TABLE `escolas` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `professores`
---
-
-DROP TABLE IF EXISTS `professores`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `professores` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `EMAIL` varchar(255) DEFAULT NULL,
-  `USUARIO` varchar(255) DEFAULT NULL,
+  `PERFIL` varchar(255) DEFAULT NULL,
   `SENHA` varchar(255) DEFAULT NULL,
-  `CERTIFICADO` varchar(255) DEFAULT NULL,
-  `VALORHORA` varchar(255) DEFAULT NULL,
-  `IDESCOLA` int(11) DEFAULT NULL,
-  PRIMARY KEY (`ID`),
-  KEY `FK_rqdauwa8erynj897om3qs541f` (`IDESCOLA`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `USUARIO` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `professores`
+-- Dumping data for table `usuario`
 --
 
-LOCK TABLES `professores` WRITE;
-/*!40000 ALTER TABLE `professores` DISABLE KEYS */;
-/*!40000 ALTER TABLE `professores` ENABLE KEYS */;
+LOCK TABLES `usuario` WRITE;
+/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` VALUES (1,'ADMINISTRADOR','admin','admin');
+/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -186,4 +184,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-01-26 18:38:46
+-- Dump completed on 2017-01-30 14:41:53

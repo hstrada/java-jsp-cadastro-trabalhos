@@ -35,16 +35,6 @@ CREATE TABLE `aluno` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `aluno`
---
-
-LOCK TABLES `aluno` WRITE;
-/*!40000 ALTER TABLE `aluno` DISABLE KEYS */;
-INSERT INTO `aluno` VALUES (1,'helena','31321',1,3),(2,'julio','31524',3,4);
-/*!40000 ALTER TABLE `aluno` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `curso`
 --
 
@@ -60,17 +50,6 @@ CREATE TABLE `curso` (
   KEY `FK_kf6pc9o384bheh138c33jboj6` (`IDESCOLA`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `curso`
---
-
-LOCK TABLES `curso` WRITE;
-/*!40000 ALTER TABLE `curso` DISABLE KEYS */;
-INSERT INTO `curso` VALUES (1,'MBA - Java','28SCJ',1),(2,'C#','27C',2),(3,'BD','24BD',2),(4,'Colegial','3',3);
-/*!40000 ALTER TABLE `curso` ENABLE KEYS */;
-UNLOCK TABLES;
-
 --
 -- Table structure for table `curso_disciplina`
 --
@@ -87,16 +66,6 @@ CREATE TABLE `curso_disciplina` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `curso_disciplina`
---
-
-LOCK TABLES `curso_disciplina` WRITE;
-/*!40000 ALTER TABLE `curso_disciplina` DISABLE KEYS */;
-INSERT INTO `curso_disciplina` VALUES (1,1),(2,3),(3,2),(4,4);
-/*!40000 ALTER TABLE `curso_disciplina` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `disciplina`
 --
 
@@ -110,15 +79,6 @@ CREATE TABLE `disciplina` (
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `disciplina`
---
-
-LOCK TABLES `disciplina` WRITE;
-/*!40000 ALTER TABLE `disciplina` DISABLE KEYS */;
-INSERT INTO `disciplina` VALUES (1,'Java na Web'),(2,'BD 3'),(3,'C# - OO'),(4,'Geografia');
-/*!40000 ALTER TABLE `disciplina` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `escola`
@@ -133,16 +93,6 @@ CREATE TABLE `escola` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `escola`
---
-
-LOCK TABLES `escola` WRITE;
-/*!40000 ALTER TABLE `escola` DISABLE KEYS */;
-INSERT INTO `escola` VALUES (1,'FIAP - Lins'),(2,'FIAP - Paulista'),(3,'FREUD');
-/*!40000 ALTER TABLE `escola` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `nota`
@@ -164,15 +114,6 @@ CREATE TABLE `nota` (
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `nota`
---
-
-LOCK TABLES `nota` WRITE;
-/*!40000 ALTER TABLE `nota` DISABLE KEYS */;
-INSERT INTO `nota` VALUES (1,8,7,9,1,1),(2,6,4,5,1,2),(3,6,4,5,2,2);
-/*!40000 ALTER TABLE `nota` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `professor`
@@ -192,15 +133,6 @@ CREATE TABLE `professor` (
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `professor`
---
-
-LOCK TABLES `professor` WRITE;
-/*!40000 ALTER TABLE `professor` DISABLE KEYS */;
-INSERT INTO `professor` VALUES (1,'Michel',1,2),(2,'Conceicao',3,5);
-/*!40000 ALTER TABLE `professor` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `professor_disciplina`
@@ -216,16 +148,6 @@ CREATE TABLE `professor_disciplina` (
   KEY `FK_dceb83kmlmd5d3shusxocw2hu` (`DISCIPLINA_ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `professor_disciplina`
---
-
-LOCK TABLES `professor_disciplina` WRITE;
-/*!40000 ALTER TABLE `professor_disciplina` DISABLE KEYS */;
-INSERT INTO `professor_disciplina` VALUES (1,1),(1,3),(2,4);
-/*!40000 ALTER TABLE `professor_disciplina` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `usuario`
@@ -249,7 +171,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'ADMINISTRADOR','admin','admin'),(2,'PROFESSOR','michel','michel'),(3,'ALUNO','helena','helena'),(4,'ALUNO','julio','julio'),(5,'PROFESSOR','conceicao','conceicao');
+INSERT INTO `usuario` VALUES (1,'ADMINISTRADOR','admin','admin');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
