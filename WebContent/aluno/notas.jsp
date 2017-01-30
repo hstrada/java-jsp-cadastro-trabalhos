@@ -20,9 +20,9 @@
 					<tbody>
 						<c:forEach items="${notas}" var="notas">
 							<tr>
-								<td>${notas[0]}</td>
-								<td>${notas[1]}</td>
-								<td>${notas[2]}</td>
+								<td>${notas.atividadePratica}</td>
+								<td>${notas.projeto1}</td>
+								<td>${notas.projeto2}</td>
 							</tr>
 						</c:forEach>
 					</tbody>

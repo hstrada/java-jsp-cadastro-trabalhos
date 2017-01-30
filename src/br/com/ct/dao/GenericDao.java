@@ -93,7 +93,7 @@ public class GenericDao<T> implements Dao<T> {
 		em.getTransaction().begin();
 
 		Query query = em
-				.createQuery("select d.id as id, d.nome as nome from Disciplina d join d.professores p where p.id = :idProfessor");
+				.createQuery("select d from Disciplina d join d.professores p where p.id = :idProfessor");
 		query.setParameter("idProfessor", idProfessor);
 
 		return query.getResultList();
@@ -115,7 +115,7 @@ public class GenericDao<T> implements Dao<T> {
 		em.getTransaction().begin();
 
 		Query query = em
-				.createQuery("select n.atividadePratica, n.projeto1, n.projeto2 from Nota n where n.aluno.id = :idAluno");
+				.createQuery("select n from Nota n where n.aluno.id = :idAluno");
 		query.setParameter("idAluno", idAluno);
 
 		return query.getResultList();

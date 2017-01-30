@@ -20,8 +20,8 @@
 					<tbody>
 						<c:forEach items="${disciplinas}" var="disc">
 							<tr>
-								<td>${disc[1]}</td>
-								<td><a href="listarAlunos?id=${disc[0]}"><i class="pe-7s-magic-wand"></i></a></td>
+								<td>${disc.nome}</td>
+								<td><a href="listarAlunos?id=${disc.id}"><i class="pe-7s-magic-wand"></i></a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
