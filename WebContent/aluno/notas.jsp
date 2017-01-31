@@ -20,15 +20,13 @@
 						<th>Status</th>
 					</thead>
 					<tbody>
-						<c:forEach items="${notas}" var="notas">
-							<tr>
-								<td>${notas.atividadePratica}</td>
-								<td>${notas.projeto1}</td>
-								<td>${notas.projeto2}</td>
-								<td>${notas.media}</td>
-								<td>${notas.aprovadoDescricao}</td>
-							</tr>
-						</c:forEach>
+						<tr>
+							<td><c:out value="${notas.atividadePratica}" /></td>
+							<td><c:out value="${notas.projeto1}" /></td>
+							<td><c:out value="${notas.projeto2}" /></td>
+							<td><c:out value="${notas.media}" /></td>
+							<td><c:out value="${notas.aprovadoDescricao}" /></td>
+						</tr>
 					</tbody>
 				</table>
 

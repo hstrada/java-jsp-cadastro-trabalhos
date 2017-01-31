@@ -17,4 +17,9 @@ public class DisciplinasBean {
 		return dao.listarDisciplinasPorIdProfessor(idProfessor);
 	}
 
+	public List<Disciplina> getListaDisciplinasPorAluno(int idAluno) {
+		GenericDao<Disciplina> dao = new GenericDao<>(Disciplina.class);
+		return dao.listarDisciplinasPorIdAluno(idAluno);
+	}
+
 }

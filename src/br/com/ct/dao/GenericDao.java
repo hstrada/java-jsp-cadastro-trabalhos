@@ -121,4 +121,16 @@ public class GenericDao<T> implements Dao<T> {
 		return query.getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<Disciplina> listarDisciplinasPorIdAluno(int idAluno) {
+		em = JpaUtil.getEntityManager();
+		em.getTransaction().begin();
+
+		Query query = em
+				.createQuery("select n.disciplina from Nota n where n.aluno.id = :idAluno ");
+
+		query.setParameter("idAluno", idAluno);
+		return query.getResultList();
+	}
+
 }

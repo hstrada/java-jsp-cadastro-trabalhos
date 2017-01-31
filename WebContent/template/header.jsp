@@ -63,9 +63,9 @@
 					<%
 						if (session.getAttribute("aluno") != null) {
 					%>
-					<li><a href="<c:url value="/aluno/listarNotas"/>"> <i
+					<li><a href="<c:url value="/aluno/listarDisciplinas"/>"> <i
 							class="pe-7s-print"></i>
-							<p>Visualizar Notas</p>
+							<p>Visualizar Disciplinas</p>
 					</a></li>
 					<!-- se for professor -->
 					<%
