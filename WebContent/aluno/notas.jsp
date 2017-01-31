@@ -25,7 +25,7 @@
 							<td><c:out value="${notas.projeto1}" /></td>
 							<td><c:out value="${notas.projeto2}" /></td>
 							<td><c:out value="${notas.media}" /></td>
-							<td><c:out value="${notas.aprovadoDescricao}" /></td>
+							<td><c:out value="${notas.aprovado ? 'Aprovado' : 'Reprovado'}" /></td>
 						</tr>
 					</tbody>
 				</table>

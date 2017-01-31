@@ -44,7 +44,7 @@ public class Nota implements Serializable {
 	private Double media;
 
 	@Transient
-	private boolean aprovado;
+	private boolean aprovado = false;
 
 	public Integer getId() {
 		return id;
@@ -101,9 +101,9 @@ public class Nota implements Serializable {
 		double media = p1 + p2 + ap;
 
 		if (media >= 7) {
-			boolean aprovado = true;
+			this.aprovado = true;
 		} else {
-			boolean aprovado = false;
+			this.aprovado = false;
 		}
 
 		return media;
@@ -114,9 +114,10 @@ public class Nota implements Serializable {
 	}
 
 	public String getAprovadoDescricao() {
-		if (aprovado = true)
-			return "Aprovado";
-		else
+		if (aprovado = false)
 			return "Reprovado";
+		else
+			return "Aprovado";
 	}
+
 }
