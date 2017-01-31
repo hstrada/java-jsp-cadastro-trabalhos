@@ -5,3 +5,7 @@ Altere o usuário e senha para a sua conexão.
 Rode o comando abaixo após ter criado o banco de dados ou execute o arquivo: script.sql.
 
 INSERT INTO usuario (PERFIL, USUARIO, SENHA) VALUES ('ADMINISTRADOR', 'admin', 'admin');
+
+Link também disponível no GitHub:
+
+github.com/hstrada/java-jsp-cadastro-trabalhos
